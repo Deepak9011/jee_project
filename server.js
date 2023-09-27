@@ -14,6 +14,7 @@ const {v4 : uuidv4} = require('uuid');
 app.use(express.json())
 app.use((req,res,next)=>{
     console.log(req.path, req.method)
+    next()
 })
 app.use(express.urlencoded({express:true}));
 app.use(bodyParser.json());
@@ -28,9 +29,30 @@ app.listen(port, () => {
 
 app.get('/', (req,res)=>{
     // res.json({mssg:'welcome to the app'});
-    res.send('Hello world')
-});
+    res.json({mssg: 'GET all workouts'})
+})
 
+app.set('view engine','js');
 app.get('/register',(req,res)=>{
     res.render('./src/components/login_register/Register.js');
-});
+})
+
+
+// require('dotenv').config()
+
+// const express = require('express')
+// const workoutRoutes = require('./routes/workouts')
+
+// // express app
+// const app = express()
+
+// // middleware
+// app.use(express.json())
+
+// app.use((req, res, next) => {
+//   console.log(req.path, req.method)
+//   next()
+// })
+
+// // routes
+// app.use('/api/workouts', workoutRoutes)
